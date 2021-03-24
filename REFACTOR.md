@@ -115,4 +115,5 @@ van een goede readme.
 - Graphql endpoints specifieker maken? e.g. /api/graphql/:groupId gebruiken
 - Niet helemaal duidelijk waar data wordt opgehaald in TableExplorer/ListTables
 - Liever geen inline styling gebruiken
+- Mixins zijn wat ondoorzichtig
 - Wat is het idee achter die table mixins?

@@ -8,35 +8,32 @@
         <Draggable
           ghost-class="border-primary"
           handle=".column-drag-header"
-          :item-key="id"
           :list="columns"
           tag="tr"
           @change="$emit('update:columns', $event)"
         >
-          <template #item="{columns}">
-            <th
-              slot="header" v-if="hasColheader"
-              scope="col"
-              style="width: 1px;"
-            >
-              <h6 class="mb-0 mt-2 d-inline">
-                #
-                <!--@slot Use this to add values or actions buttons header -->
-              </h6>
-              <span style="text-align: left;"><slot name="colheader" /> </span>
-            </th>
-            <th
-              v-for="col in columns"
-              :key="col.name + col.showColumn"
-              class="column-drag-header"
-              scope="col"
-              :style="col.showColumn ? '' : 'display: none'"
-            >
-              <h6 class="mb-0">
-                {{ col.name }}
-              </h6>
-            </th>
-          </template>
+          <th
+            slot="header" v-if="hasColheader"
+            scope="col"
+            style="width: 1px;"
+          >
+            <h6 class="mb-0 mt-2 d-inline">
+              #
+              <!--@slot Use this to add values or actions buttons header -->
+            </h6>
+            <span style="text-align: left;"><slot name="colheader" /> </span>
+          </th>
+          <th
+            v-for="col in columns"
+            :key="col.name + col.showColumn"
+            class="column-drag-header"
+            scope="col"
+            :style="col.showColumn ? '' : 'display: none'"
+          >
+            <h6 class="mb-0">
+              {{ col.name }}
+            </h6>
+          </th>
         </Draggable>
       </thead>
       <tbody>

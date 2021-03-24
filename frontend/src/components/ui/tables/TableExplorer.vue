@@ -156,7 +156,7 @@
 
         graphqlError = {{ graphqlError }}
 
-        schema = {{ schema }}
+        schema = {{ $s.schema }}
 
       columns = {{ JSON.stringify(columns) }}
 
@@ -278,7 +278,7 @@ export default {
         // filter on subclass, if exists
         if (this.hasSubclass) {
           filter.mg_tableclass = {
-            equals: this.schema.name + '.' + this.tableMetadata.name,
+            equals: this.$s.schema.name + '.' + this.tableMetadata.name,
           }
         }
         this.columns.forEach((col) => {

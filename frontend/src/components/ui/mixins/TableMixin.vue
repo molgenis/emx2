@@ -68,6 +68,7 @@ export default {
     },
   },
   watch: {
+    '$s.schema': 'reload',
     graphqlFilter: {
       deep: true,
       handler() {
@@ -75,7 +76,6 @@ export default {
       },
     },
     limit: 'reload',
-    schema: 'reload',
     searchTerms: 'reload',
     table: 'reload',
   },
@@ -93,8 +93,8 @@ export default {
     },
     getTable(table) {
       let result = undefined
-      if (this.schema != null && this.schema.tables != null) {
-        this.schema.tables.forEach((t) => {
+      if (this.$s.schema != null && this.$s.schema.tables != null) {
+        this.$s.schema.tables.forEach((t) => {
           if (t.name == table) {
             result = t
           }
@@ -121,7 +121,7 @@ export default {
       if (this.tableMetadata != undefined) {
         this.loading = true
         this.graphqlError = null
-        console.log('RELOAD', this.graphqlURL)
+
         request(this.graphqlURL, this.graphql, {filter: this.graphqlFilter})
           .then((data) => {
             this.data = data[this.table]
