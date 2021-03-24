@@ -4,16 +4,17 @@
     viewBox="0 0 24 24"
     width="40"
   >
-    <Component :is="name" />
+    <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
+    <component :is="`Icon${name}`" />
   </svg>
 </template>
 
 <script>
-import home from './IconHome.vue'
+import IconHome from './IconHome.vue'
 
 export default {
   components: {
-    home,
+    IconHome,
   },
   props: {
     name: {

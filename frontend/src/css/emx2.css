@@ -1,0 +1,82 @@
+.theme-dark {
+    --primary-color: #33c6c3;
+    --info-color: #9ddc4b;
+    --warning-color: #f29a87;
+    --error-color: #cb6c4d;
+
+    --grey-500: #1a202c;
+    --grey-400: #222835;
+    --grey-300: #292f3b;
+    --grey-200: #667184;
+    --grey-100: #828da1;
+    --grey-50: #cad6eb;
+    --grey-0: #fff;
+
+    background: var(--grey-500);
+    color: var(--grey-100);
+}
+
+::-webkit-scrollbar {
+    width: var(--spacer);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; }
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+:root {
+    --text-tiny: 0.7rem;
+    --text-small: 0.85rem;
+    --text-base: 1rem;
+    --text-large: 1.1rem;
+    --text-huge: 1.5rem;
+
+    --backdrop: 0 0 var(--space-1) #00000066;
+    --border: 2px;
+    --spacer: 8px;
+    --space-4: calc(var(--spacer) * 8);
+    --space-3: calc(var(--spacer) * 6);
+    --space-2: calc(var(--spacer) * 4);
+    --space-1: calc(var(--spacer) * 2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Noto Sans", sans-serif;
+    font-size: var(--text-base);
+    font-weight: 400;
+    margin: 0;
+    outline: none;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+textarea {
+    height: var(--unit);
+    padding: 0;
+    resize: none;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+button {
+    border: 0;
+    font-size: var(--text-base);
+}
+
+::selection {
+    background: var(--primary-color);
+    color: var(--grey-0);
+}
+

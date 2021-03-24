@@ -1,7 +1,7 @@
 <template>
   <div>
     <RouterLink v-if="$s.schema" to="/">
-      Back to {{ $s.schema.name }}
+      <Icon class="icon icon-mini" name="Home" /> Back to {{ $s.schema.name }}
     </RouterLink>
     <TableExplorer :group-id="groupId" :table="table" />
   </div>

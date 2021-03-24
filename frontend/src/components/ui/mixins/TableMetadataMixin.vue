@@ -22,11 +22,11 @@ export default {
   computed: {
     canEdit() {
       return (
-        this.session &&
-        (this.session.email == 'admin' ||
-          (this.session.roles &&
-            (this.session.roles.includes('Editor') ||
-              this.session.roles.includes('Manager'))))
+        this.$session &&
+        (this.$session.email == 'admin' ||
+          (this.$session.roles &&
+            (this.$session.roles.includes('Editor') ||
+              this.$session.roles.includes('Manager'))))
       )
     },
   },
@@ -34,22 +34,23 @@ export default {
     this.reloadMetadata()
   },
   methods: {
-    reloadMetadata() {
+    async reloadMetadata() {
       this.loading = true
       this.graphqlError = null
-      request(
-        this.graphqlURL,
-        '{_session{email,roles}_schema{name,tables{name,description,semantics,columns{name,columnType,key,refTable,refLink,refJsTemplate,required,semantics}}}}',
-      )
-        .then((data) => {
-          this.$s.session = data._session
-          this.$s.schema = data._schema
-          this.loading = false
-        })
-        .catch((error) => {
-          this.graphqlError = 'internal server graphqlError' + error
-          this.loading = false
-        })
+      let data
+      try {
+        data = await request(
+          this.graphqlURL,
+          '{_session{email,roles}_schema{name,tables{name,description,semantics,columns{name,columnType,key,refTable,refLink,refJsTemplate,required,semantics}}}}',
+        )
+
+        this.$s.session = data._session
+        this.$s.schema = data._schema
+        this.loading = false
+      } catch (error) {
+        this.graphqlError = 'internal server graphqlError' + error
+        this.loading = false
+      }
     },
   },
 }

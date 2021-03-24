@@ -152,7 +152,7 @@
 
       graphqlFilter = {{ JSON.stringify(graphqlFilter) }}
 
-      session = {{ session }}
+      session = {{ $s.session }}
 
         graphqlError = {{ graphqlError }}
 

@@ -121,6 +121,7 @@ export default {
       if (this.tableMetadata != undefined) {
         this.loading = true
         this.graphqlError = null
+        console.log('RELOAD', this.graphqlURL)
         request(this.graphqlURL, this.graphql, {filter: this.graphqlFilter})
           .then((data) => {
             this.data = data[this.table]
