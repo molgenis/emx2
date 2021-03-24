@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.com/molgenis/molgenis-emx2.svg?branch=master)](https://travis-ci.com/molgenis/molgenis-emx2)
 
+[REFACTOR explanation](REFACTOR.md)
+
 # EMX2
 
 EMX2 is a data platform for researchers to accelerate scientific collaborations
