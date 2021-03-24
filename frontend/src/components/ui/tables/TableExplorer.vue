@@ -220,6 +220,7 @@ export default {
   },
   extends: TableMixin,
   props: {
+    groupId: String,
     showCards: {
       type: Boolean,
       default: false,
@@ -249,6 +250,7 @@ export default {
   data() {
     return {
       columns: [],
+      graphqlURL: `/${this.groupId}/tables/graphql`,
       layoutTable: true,
       page: 1,
       selectedItems: [],

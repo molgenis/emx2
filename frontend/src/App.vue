@@ -1,49 +1,25 @@
 <template>
   <div id="app">
-    <Molgenis
-      v-model="session"
-      :menu-items="menuItems"
-      title="Welcome to MOLGENIS"
-    >
-      <Groups :key="JSON.stringify(session)" :session="session" />
-      <!-- from catalogue App.vue -->
-      <div class="container-fluid">
-        <RouterView :key="$route.fullPath" :page="page" :session="session" />
-      </div>
-    </Molgenis>
+    <Menu />
+
+    <div class="container-fluid">
+      <RouterView :key="$route.fullPath" :page="$s.page" :session="$s.session" />
+    </div>
+    <Footer>
+      <span v-if="$s.session && $s.session.manifest">
+        Version: <a :href="`https://github.com/molgenis/molgenis-emx2/releases/tag/v${$s.session.manifest.SpecificationVersion}`">
+          {{ $s.session.manifest.SpecificationVersion }}
+        </a>
+      </span>
+    </Footer>
   </div>
 </template>
 
 <script>
-import Groups from './components/central/Groups.vue'
-import Molgenis from './components/ui/layout/Molgenis.vue'
+import Footer from '@/components/ui/layout/MolgenisFooter.vue'
+import Menu from '@/components/ui/layout/MolgenisMenu.vue'
 
 export default {
-  components: {
-    Groups,
-    Molgenis,
-  },
-  data: function() {
-    return {
-      menuItems: [
-        {active: true, href: '.', label: 'Databases'},
-        {
-          href: '/apps/graphql-playground/',
-          label: 'GraphQL API',
-        },
-        {
-          href: '/apps/styleguide/',
-          label: 'Styleguide',
-        },
-        {
-          href: '/apps/docs/',
-          label: 'Docs',
-          newWindow: true,
-        },
-      ],
-      page: null,
-      session: {},
-    }
-  },
+  components: {Footer, Menu},
 }
 </script>

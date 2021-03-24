@@ -33,13 +33,11 @@
 </template>
 
 <script>
-import Draggable from 'vuedraggable'
 import {IconAction, IconDanger, InputSelect, InputString} from '@/components/ui/index.js'
 
 export default {
   name: 'MenuManager',
   components: {
-    Draggable,
     IconAction,
     IconDanger,
     InputSelect,

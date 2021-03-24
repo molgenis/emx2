@@ -5,9 +5,9 @@
       <MessageError v-if="error">
         {{ error }}
       </MessageError>
-      <span v-if="session.email && session.email != 'anonymous'">
+      <span v-if="$s.session.email && $s.session.email != 'anonymous'">
         <a href="#" @click.prevent="showChangePasswordForm = true">
-          Hi {{ session.email }}</a>&nbsp;
+          Hi {{ $s.session.email }}</a>&nbsp;
         <ChangePasswordForm
           v-if="showChangePasswordForm"
           :error="error"
@@ -55,18 +55,10 @@ export default {
     SignupForm,
     Spinner,
   },
-  props: {
-    graphql: {
-      default: 'graphql',
-      type: String,
-    },
-  },
-  emits: ['update:modelValue'],
   data: function() {
     return {
       error: null,
       loading: false,
-      session: {},
       showChangePasswordForm: false,
       showSigninForm: false,
       showSignupForm: false,
@@ -86,7 +78,6 @@ export default {
     changed() {
       this.reload()
       this.showSigninForm = false
-      this.$emit('update:modelValue', this.session)
     },
     closeSigninForm() {
       this.showSigninForm = false
@@ -104,52 +95,50 @@ export default {
         return null
       }
     },
-    reload() {
+    async reload() {
       this.loading = true
-      request(
-        this.graphql,
-        '{_session{email,roles},_settings{key,value},_manifest{ImplementationVersion,SpecificationVersion}}',
+      let data
+      try {
+        data = await request('/graphql',
+          '{_session{email,roles},_settings{key,value},_manifest{ImplementationVersion,SpecificationVersion}}',
+        )
+      } catch (error) {
+        if (error.response.status === 504) {
+          this.error = 'Error. Server cannot be reached.'
+        } else {
+          this.error = 'internal server error ' + error
+        }
+        this.loading = false
+      }
+
+      if (data._session != undefined) {
+        this.$s.session = data._session
+      } else {
+        this.$s.session = {}
+      }
+      // convert settings to object
+      this.$s.session.settings = {}
+      data._settings.forEach(
+        (s) =>
+          (this.$s.session.settings[s.key] =
+            s.value.startsWith('[') || s.value.startsWith('{')
+              ? this.parseJson(s.value)
+              : s.value),
       )
-        .then((data) => {
-          if (data._session != undefined) {
-            this.session = data._session
-          } else {
-            this.session = {}
-          }
-          // convert settings to object
-          this.session.settings = {}
-          data._settings.forEach(
-            (s) =>
-              (this.session.settings[s.key] =
-                s.value.startsWith('[') || s.value.startsWith('{')
-                  ? this.parseJson(s.value)
-                  : s.value),
-          )
-          this.session.manifest = data._manifest
-          this.loading = false
-          this.$emit('update:modelValue', this.session)
-        })
-        .catch((error) => {
-          if (error.response.status === 504) {
-            this.error = 'Error. Server cannot be reached.'
-          } else {
-            this.error = 'internal server error ' + error
-          }
-          this.loading = false
-        })
+      this.$s.session.manifest = data._manifest
+      this.loading = false
     },
     signout() {
       this.loading = true
       this.showSigninForm = false
-      request('graphql', 'mutation{signout{status}}')
+      request('/graphql', 'mutation{signout{status}}')
         .then((data) => {
           if (data.signout.status === 'SUCCESS') {
-            this.session = {}
+            this.$s.session = {}
           } else {
             this.error = 'sign out failed'
           }
           this.loading = false
-          this.$emit('update:modelValue', this.session)
           this.reload()
         })
         .catch((error) => (this.error = 'internal server error' + error))

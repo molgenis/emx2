@@ -20,11 +20,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'http://localhost:8080',
-      '/apps': 'http://localhost:8080',
       '/graphql': 'http://localhost:8080/api',
-      // From catalogue proxy
-      '^/graphql': {
-        target: 'http://localhost:8080/Conception',
+      // eslint-disable-next-line no-useless-escape
+      '^/.*/tables/graphql': {
+        target: 'http://localhost:8080',
       },
     },
   },

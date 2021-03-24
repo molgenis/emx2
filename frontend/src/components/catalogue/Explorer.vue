@@ -88,7 +88,7 @@ import {request} from 'graphql-request'
 import {
   FilterSidebar, FilterWells, InputCheckbox, InputSearch,
   MessageError, MessageSuccess, Molgenis, ShowMore, Spinner,
-} from '../ui/index.js'
+} from '@/components/ui/index.js'
 
 export default {
   components: {

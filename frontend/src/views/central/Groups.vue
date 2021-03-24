@@ -7,19 +7,19 @@
     <IconBar>
       <label>{{ count }} databases found</label>
       <IconAction
-        v-if="session && session.email == 'admin'"
+        v-if="$s.session && $s.session.email == 'admin'"
         icon="plus"
         @click="openCreateSchema"
       />
     </IconBar>
     <TableSimple
       :columns="['name', 'description']"
-      :rows="schemas"
+      :rows="$s.schemas"
       @click="openGroup"
     >
       <template #rowheader="slotProps">
         <IconDanger
-          v-if="session && session.email == 'admin'"
+          v-if="$s.session && $s.session.email == 'admin'"
           :key="slotProps.row.name"
           icon="trash"
           @click="openDeleteSchema(slotProps.row.name)"
@@ -35,17 +35,17 @@
     <ShowMore
       title="debug"
     >
-      session = {{ session }}, schemas = {{ schemas }}
+      session = {{ $s.session }}, schemas = {{ $s.schemas }}
     </ShowMore>
   </div>
 </template>
 
 <script>
-import MessageError from '../ui/forms/MessageError.vue'
+import MessageError from '@/components/ui/forms/MessageError.vue'
 import {request} from 'graphql-request'
-import SchemaCreateModal from './SchemaCreateModal.vue'
-import SchemaDeleteModal from './SchemaDeleteModal.vue'
-import {IconAction, IconBar, IconDanger, ShowMore, Spinner, TableSimple} from '../ui/index.js'
+import SchemaCreateModal from '@/components/central/SchemaCreateModal.vue'
+import SchemaDeleteModal from '@/components/central/SchemaDeleteModal.vue'
+import {IconAction, IconBar, IconDanger, ShowMore, Spinner, TableSimple} from '@/components/ui/index.js'
 
 export default {
   components: {
@@ -59,21 +59,17 @@ export default {
     Spinner,
     TableSimple,
   },
-  props: {
-    session: Object,
-  },
   data: function() {
     return {
       graphqlError: null,
       loading: false,
-      schemas: [],
       showCreateSchema: false,
       showDeleteSchema: false,
     }
   },
   computed: {
     count() {
-      return this.schemas.length
+      return this.$s.schemas.length
     },
   },
   created() {
@@ -88,17 +84,17 @@ export default {
       this.showDeleteSchema = null
       this.getSchemaList()
     },
-    getSchemaList() {
+    async getSchemaList() {
       this.loading = true
-      request('graphql', '{Schemas{name}}')
-        .then((data) => {
-          this.schemas = data.Schemas
-          this.loading = false
-        })
-        .catch(
-          (error) =>
-            (this.graphqlError = 'internal server graphqlError' + error),
-        )
+      let data
+      try {
+        data = await request('/graphql', '{Schemas{name}}')
+      } catch(error) {
+        this.graphqlError = 'internal server graphqlError' + error
+      }
+
+      this.$s.schemas = data.Schemas
+      this.loading = false
     },
     openCreateSchema() {
       this.showCreateSchema = true
@@ -107,7 +103,7 @@ export default {
       this.showDeleteSchema = schemaName
     },
     openGroup(group) {
-      window.open('/' + group.name + '/tables/', '_blank')
+      this.$router.push({name: 'tables-list', params: {groupId: group.name}})
     },
   },
 }

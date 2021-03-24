@@ -110,13 +110,11 @@
 
 <script>
 import ColumnEdit from './ColumnEdit.vue'
-import Draggable from 'vuedraggable'
 import {IconAction, InputString, RowFormInput, ShowMore} from '@/components/ui/index.js'
 
 export default {
   components: {
     ColumnEdit,
-    Draggable,
     IconAction,
     InputString,
     RowFormInput,

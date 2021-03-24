@@ -101,7 +101,6 @@
 <script>
 import ColumnEditor from './ColumnEditor.vue'
 import columnTypes from '@/lib/columnTypes.js'
-import Draggable from 'vuedraggable'
 import FormEdit from './FormEdit.vue'
 import {ButtonAction, IconAction, IconDanger, InputString, LayoutModal} from '@//components/ui/index.js'
 
@@ -109,7 +108,6 @@ export default {
   components: {
     ButtonAction,
     ColumnEditor,
-    Draggable,
     FormEdit,
     IconAction,
     IconDanger,

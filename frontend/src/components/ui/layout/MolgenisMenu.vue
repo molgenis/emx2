@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <button
       aria-controls="navbarNav"
       aria-expanded="false"
@@ -49,45 +49,56 @@
         </li>
       </ul>
     </div>
-    <slot />
+    <Session />
   </nav>
 </template>
 
 <script>
 import ButtonDropdown from '../forms/ButtonDropdown.vue'
+import {DefaultMenuMixin} from '@/components/ui/index.js'
+import Session from '@/components/ui/layout/MolgenisSession.vue'
 
 /** You can use the slot to put a component in the right of menu, e.g. an 'Account' component */
 export default {
   components: {
     ButtonDropdown,
+    Session,
   },
+  mixins: [DefaultMenuMixin],
   props: {
-    /** the navbar items */
-    items: Array,
     /** logo to show*/
     logo: String,
-    /** session information, so we can check role permissions */
-    session: Object,
+  },
+  computed: {
+    items() {
+      if (this.$s.session && this.$s.session.settings && this.$s.session.settings.menu) {
+        return this.$s.session.settings.menu
+      } else if (this.$s.menuItems) {
+        return this.$s.menuItems
+      } else {
+        return this.defaultMenu
+      }
+    },
   },
   methods: {
     permitted(item) {
       if (!item.role) {
         return true
       }
-      if (this.session && Array.isArray(this.session.roles)) {
-        if (this.session.email == 'admin') {
+      if (this.$s.session && Array.isArray(this.$s.session.roles)) {
+        if (this.$s.session.email == 'admin') {
           return true
         }
         if (item.role == 'Viewer') {
-          return this.session.roles.some((r) =>
+          return this.$s.session.roles.some((r) =>
             ['Viewer', 'Editor', 'Manager', 'Owner'].includes(r),
           )
         } else if (item.role == 'Editor') {
-          return this.session.roles.some((r) =>
+          return this.$s.session.roles.some((r) =>
             [('Editor', 'Manager', 'Owner')].includes(r),
           )
         } else if (item.role == 'Manager') {
-          return this.session.roles.some((r) =>
+          return this.$s.session.roles.some((r) =>
             ['Manager', 'Owner'].includes(r),
           )
         }

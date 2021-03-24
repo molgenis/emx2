@@ -98,11 +98,10 @@
  * Table that uses MOLGENIS metadata format to configure itself. Provide 'metadata' and 'data' and your table is ready.
  * Can be used without backend to configure a table. Note, columns can be dragged.
  */
-import Draggable from 'vuedraggable'
 import ReadMore from '../layout/ReadMore.vue'
 
 export default {
-  components: {Draggable, ReadMore},
+  components: {ReadMore},
   props: {
     /** column metadata, two-way binded to allow for reorder */
     columns: Array,

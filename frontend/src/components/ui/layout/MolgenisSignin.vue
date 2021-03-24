@@ -91,7 +91,7 @@ export default {
         this.error = null
         this.loading = true
         request(
-          'graphql',
+          '/graphql',
           `mutation{signin(email: "${this.email}", password: "${this.password}"){status,message}}`,
         )
           .then((data) => {

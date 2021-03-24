@@ -18,9 +18,11 @@
 
 <script>
 import _baseInput from './_baseInput.vue'
+import FormGroup from './_formGroup.vue'
 
 /** Input for passwords */
 export default {
+  components: {FormGroup},
   extends: _baseInput,
 }
 </script>

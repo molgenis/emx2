@@ -10,15 +10,10 @@
 import {request} from 'graphql-request'
 
 export default {
-  props: {
-    graphqlURL: {
-      default: 'graphql',
-      type: String,
-    },
-  },
   data: function() {
     return {
       graphqlError: null,
+      graphqlURL: 'graphql',
       loading: true,
       schema: null,
       session: null,
@@ -47,8 +42,8 @@ export default {
         '{_session{email,roles}_schema{name,tables{name,description,semantics,columns{name,columnType,key,refTable,refLink,refJsTemplate,required,semantics}}}}',
       )
         .then((data) => {
-          this.session = data._session
-          this.schema = data._schema
+          this.$s.session = data._session
+          this.$s.schema = data._schema
           this.loading = false
         })
         .catch((error) => {

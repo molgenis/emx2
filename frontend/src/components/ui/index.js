@@ -41,7 +41,6 @@ import LayoutNavTabs from './layout/NavTabs.vue'
 import MessageError from './forms/MessageError.vue'
 import MessageSuccess from './forms/MessageSuccess.vue'
 import MessageWarning from './forms/MessageWarning.vue'
-import Molgenis from './layout/Molgenis.vue'
 import NavBar from './layout/MolgenisMenu.vue'
 import NavTabs from './layout/NavTabs.vue'
 
@@ -104,7 +103,6 @@ export {
   MessageError,
   MessageSuccess,
   MessageWarning,
-  Molgenis,
   NavBar,
   NavTabs,
   Pagination,

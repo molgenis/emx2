@@ -5,13 +5,13 @@ export default [
   {
     component: ListTables,
     name: 'tables-list',
-    path: '/tables',
+    path: '/groups/:groupId/tables',
     props: true,
   },
   {
     component: ViewTable,
     name: 'tables-view',
-    path: '/tables/:table',
+    path: '/groups/:groupId/tables/:table',
     props: true,
   },
 ]

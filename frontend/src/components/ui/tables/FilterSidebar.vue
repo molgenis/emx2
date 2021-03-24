@@ -34,14 +34,12 @@ filters = {{ filters }}
 </template>
 
 <script>
-import Draggable from 'vuedraggable'
 import FilterContainer from './FilterContainer.vue'
 import FilterInput from './FilterInput.vue'
 import ShowMore from '../layout/ShowMore.vue'
 
 export default {
   components: {
-    Draggable,
     FilterContainer,
     FilterInput,
     ShowMore,

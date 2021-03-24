@@ -1,9 +1,9 @@
 <template>
   <div>
-    <RouterLink v-if="schema" to="/">
-      Back to {{ schema.name }}
+    <RouterLink v-if="$s.schema" to="/">
+      Back to {{ $s.schema.name }}
     </RouterLink>
-    <TableExplorer :table="table" />
+    <TableExplorer :group-id="groupId" :table="table" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     TableExplorer,
   },
   props: {
-    schema: Object,
+    groupId: String,
     table: String,
   },
 }
