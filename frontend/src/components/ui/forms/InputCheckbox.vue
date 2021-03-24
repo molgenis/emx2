@@ -1,5 +1,5 @@
 <template>
-  <form-group v-bind="$props" class="checkbox-form-group">
+  <FormGroup v-bind="$props" class="checkbox-form-group">
     <div>
       <div
         v-for="(item, index) in options"
@@ -29,7 +29,7 @@
         clear
       </a>
     </div>
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

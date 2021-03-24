@@ -39,9 +39,9 @@
         :key="table.name"
       >
         <td>
-          <router-link :to="table.name">
+          <RouterLink :to="table.name">
             {{ table.name }}
-          </router-link>
+          </RouterLink>
         </td>
         <td v-if="tableFilter.includes('external')">
           {{ table.externalSchema }}

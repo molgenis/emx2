@@ -1,5 +1,5 @@
 <template>
-  <form-group v-bind="$props">
+  <FormGroup v-bind="$props">
     <div class="input-group">
       <span class="input-group-prepend">
         <button
@@ -21,7 +21,7 @@
       >
       <AppendClear @clear="clearValue(0)" />
     </div>
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

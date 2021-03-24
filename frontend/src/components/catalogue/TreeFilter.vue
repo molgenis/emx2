@@ -25,7 +25,7 @@
     {{ topic.name }}
 
     <ul v-if="topic.childTopics && !topic.collapsed" class="fa-ul">
-      <tree-node
+      <TreeNode
         v-for="subtopic in topic.childTopics"
         :key="JSON.stringify(topic)"
         :topic="subtopic"

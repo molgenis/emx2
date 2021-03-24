@@ -6,27 +6,23 @@ import PageManager from '@/components/settings/PageManager.vue'
 export default [
   {
     component: Layout,
-    name: 'Layout',
-    path: '/Layout',
+    name: 'settings-layout',
+    path: '/settings/layout',
   },
   {
     component: Members,
-    name: 'Members',
-    path: '/Members',
+    name: 'settings-members',
+    path: '/settings/members',
   },
   {
     component: MenuManager,
-    name: 'Menu',
-    path: '/Menu',
+    name: 'settings-menu',
+    path: '/settings/menu',
   },
   {
     component: PageManager,
-    name: 'Pages',
-    path: '/Pages',
-  },
-  {
-    path: '/',
-    redirect: '/members',
+    name: 'settings-pages',
+    path: '/settings/pages',
   },
 ]
 

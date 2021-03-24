@@ -3,7 +3,7 @@ import SchemaSimple from '@/components/schema/SchemaSimple.vue'
 export default [
   {
     component: SchemaSimple,
-    name: 'simple',
+    name: 'schema-simple',
     path: '/schema',
   },
 ]

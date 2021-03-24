@@ -1,5 +1,5 @@
 <template>
-  <form-group v-bind="$props">
+  <FormGroup v-bind="$props">
     <!-- hidden input-->
     <div class="input-group">
       <input
@@ -56,7 +56,7 @@
       </a>
     </div>
     <br>
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

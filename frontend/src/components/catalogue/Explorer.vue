@@ -39,35 +39,35 @@
           <FilterWells v-model="filters" />
           <ul class="nav nav-tabs">
             <li>
-              <router-link
+              <RouterLink
                 class="nav-link"
                 :class="{ active: selected == 'Collections' }"
                 to="resources"
               >
                 Collections ({{ resourceCount }})
-              </router-link>
+              </RouterLink>
             </li>
             <li>
-              <router-link
+              <RouterLink
                 class="nav-link"
                 :class="{ active: selected == 'Tables' }"
                 to="tables"
               >
                 Tables ({{ tableCount }})
-              </router-link>
+              </RouterLink>
             </li>
             <li>
-              <router-link
+              <RouterLink
                 class="nav-link"
                 :class="{ active: selected == 'Variables' }"
                 to="variables"
               >
                 Variables ({{ variableCount }})
-              </router-link>
+              </RouterLink>
             </li>
           </ul>
           <br>
-          <router-view :search="search" />
+          <RouterView :search="search" />
         </div>
       </div>
       <ShowMore title="debug">

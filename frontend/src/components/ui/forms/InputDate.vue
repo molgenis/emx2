@@ -1,5 +1,5 @@
 <template>
-  <form-group v-bind="$props">
+  <FormGroup v-bind="$props">
     <InputAppend
       v-for="(el, idx) in valueArray"
       :key="idx + valueArray.length"
@@ -28,7 +28,7 @@
         @input="emitValue($event, idx)"
       />
     </InputAppend>
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

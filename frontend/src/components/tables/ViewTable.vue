@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link v-if="schema" to="/">
+    <RouterLink v-if="schema" to="/">
       Back to {{ schema.name }}
-    </router-link>
+    </RouterLink>
     <TableExplorer :table="table" />
   </div>
 </template>

@@ -4,12 +4,14 @@ import ViewTable from '@/components/tables/ViewTable.vue'
 export default [
   {
     component: ListTables,
-    path: '/',
+    name: 'tables-list',
+    path: '/tables',
     props: true,
   },
   {
     component: ViewTable,
-    path: '/:table',
+    name: 'tables-view',
+    path: '/tables/:table',
     props: true,
   },
 ]

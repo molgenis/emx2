@@ -12,14 +12,14 @@
       <tr v-for="page in pages">
         <td>{{ page }}</td>
         <td>
-          <router-link :to="'/' + page">
+          <RouterLink :to="'/' + page">
             view
-          </router-link>
+          </RouterLink>
         </td>
         <td>
-          <router-link :to="'/' + page + '/edit'">
+          <RouterLink :to="'/' + page + '/edit'">
             edit
-          </router-link>
+          </RouterLink>
         </td>
       </tr>
     </table>

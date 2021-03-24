@@ -4,7 +4,7 @@
     viewBox="0 0 24 24"
     width="40"
   >
-    <component :is="name" />
+    <Component :is="name" />
   </svg>
 </template>
 

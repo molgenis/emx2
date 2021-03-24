@@ -5,17 +5,20 @@ import ViewPage from '../views/pages/ViewPage.vue'
 export default [
   {
     component: ListPages,
+    name: 'pages-list',
     path: '/',
     props: true,
   },
   {
     component: ViewPage,
-    path: '/:page',
+    name: 'pages-view',
+    path: '/pages/:page',
     props: true,
   },
   {
     component: EditPage,
-    path: '/:page/edit',
+    name: 'pages-edit',
+    path: '/pages/:page/edit',
     props: true,
   },
 ]

@@ -1,5 +1,5 @@
 <template>
-  <form-group
+  <FormGroup
     :id="id" :help="help"
     :label="label"
     :placeholder="placeholder"
@@ -13,7 +13,7 @@
       type="password"
       @input="emitValue"
     >
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

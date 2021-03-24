@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link :to="'/' + page">
+    <RouterLink :to="'/' + page">
       view page
-    </router-link>
+    </RouterLink>
     <h1>{{ title }}</h1>
     <Spinner v-if="loading" />
     <div v-else>
@@ -12,7 +12,7 @@
       <MessageSuccess v-if="success">
         {{ success }}
       </MessageSuccess>
-      <ckeditor :key="page" v-model="draft" :config="editorConfig" />
+      <Ckeditor :key="page" v-model="draft" :config="editorConfig" />
       <div class="mt-2 float-right">
         <ButtonAction @click="savePage">
           Save '{{ page }}'

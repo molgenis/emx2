@@ -1,5 +1,5 @@
 <template>
-  <form-group v-bind="$props" class="radio-form-group">
+  <FormGroup v-bind="$props" class="radio-form-group">
     <div>
       <div
         v-for="(item, idx) in options"
@@ -28,7 +28,7 @@
         clear
       </a>
     </div>
-  </form-group>
+  </FormGroup>
 </template>
 
 <script>

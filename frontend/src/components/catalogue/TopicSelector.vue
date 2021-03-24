@@ -23,7 +23,7 @@
         :key="topic.name"
         class="ml-5"
       >
-        <topic-selector
+        <TopicSelector
           :selected="selected"
           :topics="topic.childTopics"
           @deselect="deselect"

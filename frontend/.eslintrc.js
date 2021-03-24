@@ -94,6 +94,10 @@ module.exports = {
         'CONTENT',
       ],
     }],
+    'vue/component-name-in-template-casing': [2, 'PascalCase', {
+      ignores: [],
+      registeredComponentsOnly: false,
+    }],
     'vue/html-indent': ['error', 2],
     'vue/max-attributes-per-line': ['error', {
       multiline: {
